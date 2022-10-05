@@ -1,0 +1,38 @@
+﻿@model StokSatis.Models.Entity.TBL_ALANLAR
+@{
+    ViewBag.Title = "alanGetir";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+@using (Html.BeginForm("Guncelle", "Alan", FormMethod.Post)) //hangi değerleri getirsin anlamındadır beginform
+                                                            //Form method post olduğunda gerçekleştirecek.
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ALANID)
+        @Html.TextBoxFor(m => m.ALANID, new { @class = "form-control", @readonly = "readonly" }) <!--Textboxda kategori id gösterecek. Üstteki etiket için-->
+
+        @Html.LabelFor(m => m.ALANAD)
+        @Html.TextBoxFor(m => m.ALANAD, new { @class = "form-control" }) <!--Textboxda kategori id gösterecek. Üstteki etiket için-->
+
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn2">Alanı Güncelle</button>
+    </div>
+}
+
+<script>
+    $("#btn2").click(function () {
+        alert("Alan güncellendi.");
+    });
+</script>
+
+

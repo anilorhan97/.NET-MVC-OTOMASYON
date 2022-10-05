@@ -1,0 +1,46 @@
+﻿@model StokSatis.Models.Entity.TBL_SATISLAR
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+@using (Html.BeginForm("Guncelle", "Satis", FormMethod.Post)) //SATIŞDAKİ GUNCELLEYİ GETİR. POST OLDUĞUNDA
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.SATISID)
+        @Html.TextBoxFor(m => m.SATISID, new { @class = "form-control", @readonly = "readonly" }) <!--readonly için üstteki head kısmındaki kütüphaneler eklenmeli.-->
+
+        @Html.LabelFor(m => m.MUSTERI)
+        @Html.DropDownListFor(m => m.TBL_MUSTERILER.MUSTERIID, (List<SelectListItem>)ViewBag.musterilerr3, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.URUN)
+        @Html.DropDownListFor(m => m.TBL_URUNLER.URUNID, (List<SelectListItem>)ViewBag.urunlerr3, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.FIYAT)
+        @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.ADET)
+        @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.TARIH)
+        @Html.TextBoxFor(m => m.TARIH, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn2">Satış Güncelle</button>
+    </div>
+}
+<script>
+    $("#btn2").click(function () {
+        alert("Satış güncellendi.");
+    });
+</script>

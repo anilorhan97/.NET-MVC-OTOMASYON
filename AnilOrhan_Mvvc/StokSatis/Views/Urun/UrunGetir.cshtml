@@ -1,0 +1,77 @@
+﻿@model StokSatis.Models.Entity.TBL_URUNLER
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.URUNID)
+                    @Html.TextBoxFor(m => m.URUNID, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN ADI</label>
+                    <input type="text" name="URUNAD" class="form-control" value="@Model.URUNAD" />
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN MARKASI</label>
+                    <input type="text" name="MARKA" class="form-control" value="@Model.MARKA" />
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN KATEGORİSİ</label>
+                    @Html.DropDownListFor(m => m.TBL_KATEGORILER.KATEGORIID, (List<SelectListItem>)ViewBag.degerr2, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN ALANI</label>
+                    @Html.DropDownListFor(m => m.TBL_ALANLAR.ALANID, (List<SelectListItem>)ViewBag.alann2, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN STOK</label>
+                    <input type="text" name="STOK" class="form-control" value="@Model.STOK" />
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN FİYATI</label>
+                    <input type="text" name="URUNFIYAT" class="form-control" value="@Model.URUNFIYAT" />
+                </div>
+
+                <div class="form-group">
+                    <label>Önceki Resim</label>
+                    <img src="~/Content/Image/@Model.RESIMM" width="90" height="90" />
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("RESIMM", new {@class="control-label col-md-2" })
+                    <input type="file" name="File"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btn2">GÜNCELLE</button>
+                <a href="/Urun/Index">Ürün Listesi</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $("#btn2").click(function () {
+        alert("Ürün güncellendi.");
+    });
+</script>
+

@@ -1,0 +1,48 @@
+﻿@using StokSatis.Models.Entity;
+
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBL_ALANLAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ALAN ID</th>
+            <th>ALAN AD</th>
+            <th width="47px">SİL</th>
+            <th width="100px">GÜNCELLE</th>
+        </tr>
+    </thead>
+    <!--c# kodları yazarken başa et gelir--> <!--Kodları okutmak için.. -->
+    @foreach (var aln in Model)
+    {
+        <tr>
+            <th>@aln.ALANID</th>
+            <td>@aln.ALANAD</td>
+            @*<td><a href="/Alan/Sil/@aln.ALANID" class="btn btn-danger">SİL</a></td>*@
+            <td>@Html.ActionLink("SİL","Sil", new { id = aln.ALANID }, new { @class="btn btn-danger",onclick="return confirm('Silmek istediğinize emin misiniz?') " })  </td>
+            <td><a href="/Alan/alanGetir/@aln.ALANID" class="btn btn-info">GÜNCELLE</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Alan/YeniAlan/" class="btn btn-info">YENİ ALAN EKLE</a> 
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<style>
+    tr:hover{background-color:aqua}
+</style>
+
+<script>
+    $("#tbl1").dataTable();
+</script>
+

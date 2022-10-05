@@ -1,0 +1,59 @@
+﻿@using StokSatis.Models.Entity;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBL_URUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN AD</th>
+            <th>MARKA</th>
+            <th>ÜRÜN KATEGORİ</th>
+            <th>ÜRÜN ALAN</th>
+            <th>STOK</th>
+            <th>FİYAT</th>
+            <th>RESİM</th>
+            <th width="47px">SİL</th>
+            <th width="100px">GÜNCELLE</th>
+        </tr>
+    </thead>
+
+    @foreach (var urn in Model)
+    {
+    <tr>
+        <th>@urn.URUNID</th>
+        <td>@urn.URUNAD</td>
+        <td>@urn.MARKA</td>
+        <td>@urn.TBL_KATEGORILER.KATEGORIAD</td>
+        <td>@urn.TBL_ALANLAR.ALANAD</td>
+        <td>@urn.STOK</td>
+        <td>@urn.URUNFIYAT</td>
+        <td><img src="~/Content/Image/@urn.RESIMM" width="80" height="80" /></td>
+        @*<td><a href="/Urun/Sil/@urn.URUNID" class="btn btn-danger">SİL</a></td>*@
+        <td>@Html.ActionLink("SİL", "Sil", new { id = urn.URUNID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinize emin misiniz?') " })  </td>
+        <td><a href="/Urun/UrunGetir/@urn.URUNID" class="btn btn-info">GÜNCELLE</a></td>
+    </tr>
+    }
+</table>
+
+<a href="/Urun/UrunEkle/" class="btn btn-info">YENİ ÜRÜN EKLE</a>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<br /><br /><br />
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<style>
+    tr:hover{background-color:aqua}
+</style>
+
+<script>
+    $("#tbl1").dataTable();
+</script>
+
+

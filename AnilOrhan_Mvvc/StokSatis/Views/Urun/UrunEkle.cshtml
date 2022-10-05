@@ -1,0 +1,62 @@
+﻿@using StokSatis.Models.Entity;
+@model StokSatis.Models.Entity.TBL_URUNLER
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+@using (Html.BeginForm("UrunEkle","Urun",FormMethod.Post, new { enctype="multipart/Form-data"})) //resim işlemi için gerekli
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ÜRÜN ADI</label>
+                    <input type="text" name="URUNAD" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN MARKASI</label>
+                    <input type="text" name="MARKA" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN KATEGORİSİ</label>
+                    @Html.DropDownListFor(m => m.TBL_KATEGORILER.KATEGORIID, (List<SelectListItem>)ViewBag.kategorii, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN ALANI</label>
+                    @Html.DropDownListFor(m => m.TBL_ALANLAR.ALANID, (List<SelectListItem>)ViewBag.alann, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN STOK</label>
+                    @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.STOK, "", new { @style = "color:red" })
+                </div>
+
+                <div class="form-group">
+                    <label>ÜRÜN FİYAT</label>
+                    @Html.TextBoxFor(m => m.URUNFIYAT, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.URUNFIYAT, "", new { @style = "color:red" })
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("RESIMM", new { @class = "control-label col-md-2" })
+                    <input type="file" name="File" class="form-control" /> <!--Buradaki name File'si controllerden geliyor.-->
+                </div>
+
+               <button class="btn btn-primary" type="submit" id="btn1">EKLE</button>
+            </div>
+        </div>
+    </div>
+}
+
+    <script>
+    $("#btn1").click(function () {
+        alert("Ürün başarılı bir şekilde eklendi.");
+    });
+    </script>
+

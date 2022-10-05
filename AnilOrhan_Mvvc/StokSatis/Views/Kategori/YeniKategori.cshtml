@@ -1,0 +1,25 @@
+﻿@model StokSatis.Models.Entity.TBL_KATEGORILER
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>KATEGORİ ADI</label>
+        @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" }) <!--required yaptığımız için bu hale çevirdik.-->
+        @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new { @style = "color:red" }) <br />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Kategori Ekle</button>
+    </div>
+</form>
+
+
+<script>
+    $("#btn1").click(function () {
+        alert("Kategori başarılı bir şekilde eklendi.");
+    });
+</script>
+
+

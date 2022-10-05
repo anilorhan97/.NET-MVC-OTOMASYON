@@ -1,0 +1,62 @@
+﻿@model StokSatis.Models.Entity.TBL_SATISLAR
+@{
+    ViewBag.Title = "YeniSatis";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+@using (Html.BeginForm("YeniSatis", "Satis", FormMethod.Post)) //Yenisatisi döndürecek. Satis klasöründen döndürecek. Ne zaman döndürecek form method post olunca.
+{
+    <button id="btn2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">SATIŞ YAP</button>
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>SATIŞ YAPMA PANELİ</h2>
+                </div>
+                <form method="post" action="/Satis/YeniSatis/">
+                    <div class="modal-body">
+
+                        <label>MÜŞTERİ AD SOYAD</label>
+                        @Html.DropDownListFor(m => m.TBL_MUSTERILER.MUSTERIID, (List<SelectListItem>)ViewBag.musterilerr, new { @class = "form-control" }) <br />
+
+                        <label>ÜRÜN</label>
+                        @Html.DropDownListFor(m => m.TBL_URUNLER.URUNID, (List<SelectListItem>)ViewBag.urunlerr, new { @class = "form-control" }) <br />
+                       
+                        <label>FİYAT</label>
+                        @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.FIYAT, "", new { @style = "color:red" }) <br />
+
+                        <label>ADET</label>
+                        @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ADET, "", new { @style = "color:red" }) <br />
+
+                        <label>TARİH</label>
+                        @Html.EditorFor(m => m.TARIH, new { htmlAttributes = new {@class="form-control", type="date"} })
+                        @Html.ValidationMessageFor(m=>m.TARIH,"", new { @style="color:red"}) <br />
+
+                        <button id="btn1" class="btn btn-info">Satışı Tamamla</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button> <!--dismiss ile modal classına geri döndürüyoruz..-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" /> <!--Content dosyasından çekildi..-->
+<script src="~/Scripts/jquery-3.3.1.js"></script> <!--Script kodları içinde çekildi-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--Sweet alert cdn kodu-->
+
+<style>
+    body {
+        background-image: url('../../arka.jpg');
+        background-size:cover;
+    }
+</style>
+
+<script>
+ 
+</script>
+

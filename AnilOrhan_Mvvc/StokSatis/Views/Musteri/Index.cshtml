@@ -1,0 +1,52 @@
+﻿@using StokSatis.Models.Entity;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBL_MUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>MUSTERI ID</th>
+            <th>MUSTERI AD</th>
+            <th>MUSTERI SOYAD</th>
+            <th width="47px">SİL</th>
+            <th width="100px">GÜNCELLE</th>
+        </tr>
+    </thead>
+    @foreach (var mst in Model)
+    {
+        <tr>
+            <th>@mst.MUSTERIID</th>
+            <td>@mst.MUSTERIAD</td>
+            <td>@mst.MUSTERISOYAD</td>
+            @*<td><a href="/Musteri/Sil/@mst.MUSTERIID" class="btn btn-danger">SİL</a></td>*@
+            <td>@Html.ActionLink("SİL", "Sil", new { id = mst.MUSTERIID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinize emin misiniz?') " })  </td>
+            <td><a href="/Musteri/musteriGetir/@mst.MUSTERIID" class="btn btn-info">GÜNCELLE</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Musteri/MusteriEkle/" class="btn btn-info">YENİ MÜŞTERİ EKLE</a>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<!--Sayfalı bir şekilde listeleme için üstteki model kütüphanesi eklenip üstteki gibi syntax ile yazılmalı.-->
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<style>
+    tr:hover{background-color:aqua}
+</style>
+
+<script>
+    $("#tbl1").dataTable();
+</script>
+
+
+

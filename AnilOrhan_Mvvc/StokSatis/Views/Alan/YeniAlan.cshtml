@@ -1,0 +1,22 @@
+﻿@model StokSatis.Models.Entity.TBL_ALANLAR
+@{
+    ViewBag.Title = "YeniAlan";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>ALAN ADI</label>
+        @Html.TextBoxFor(m => m.ALANAD, new { @class = "form-control" }) <!--required yaptığımız için bu hale çevirdik.-->
+        @Html.ValidationMessageFor(m => m.ALANAD, "", new { @style = "color:red" }) <br />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Alan Ekle</button>
+    </div>
+</form>
+
+<script>
+    $("#btn1").click(function () {
+        alert("Alan başarılı bir şekilde eklendi.");
+    });
+</script>

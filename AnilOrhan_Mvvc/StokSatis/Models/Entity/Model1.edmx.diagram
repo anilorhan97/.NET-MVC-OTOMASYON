@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c663144d60d49d6b9f2bec2bb0ee0d7" Name="Diagram1">
+        <EntityTypeShape EntityType="MagazamModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_ALANLAR" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_GIRIS" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_KATEGORILER" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_MUSTERILER" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_SATISLAR" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MagazamModel.TBL_URUNLER" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MagazamModel.FK_TBL_URUNLER_TBL_ALANLAR1" ManuallyRouted="false" />
+        <AssociationConnector Association="MagazamModel.FK_TBL_SATISLAR_TBL_GIRIS1" ManuallyRouted="false" />
+        <AssociationConnector Association="MagazamModel.FK_TBL_URUNLER_TBL_KATEGORILER1" ManuallyRouted="false" />
+        <AssociationConnector Association="MagazamModel.FK_TBL_SATISLAR_TBL_MUSTERILER2" ManuallyRouted="false" />
+        <AssociationConnector Association="MagazamModel.FK_TBL_SATISLAR_TBL_URUNLER1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

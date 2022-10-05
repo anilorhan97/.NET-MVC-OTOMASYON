@@ -1,0 +1,27 @@
+﻿@using StokSatis.Models.Entity
+@model List<TBL_URUNLER>
+
+@{
+    ViewBag.Title = "KritikStok";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ÜRÜN BİLGİSİ</th>
+        <th>STOK</th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <th>@i.URUNAD</th>
+            <th>@i.STOK</th>
+        </tr>
+    }
+</table>
+
+<style>
+    tr:hover {
+        background-color: red;
+    }
+</style>

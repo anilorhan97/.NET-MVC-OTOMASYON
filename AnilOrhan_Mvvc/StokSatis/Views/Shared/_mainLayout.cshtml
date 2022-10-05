@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        /*.alt{background-color:black;width:100%;height:120px;clear:both; position:absolute; }*/
+    
+        body{background-color: #eee; color:#222 ; transition: 1000ms all;}
+        body.dark{background-color:#222; color:#fff}
+        .mode-control input{
+            position : absolute; opacity:0;
+        }
+        .mode-control span:nth-of-type(2) {
+            display: none;
+        }
+        .mode-control input:checked + span {
+            display:none;
+        }
+        .mode-control input:checked + span + span {
+            display:inline-block;
+        }
+        .mode-control span {
+           display:inline-block; padding:0 20px; line-height:40px; border-radius:30px; background-color:#222; color:#fff;
+        }
+        body.dark .mode-control span{
+            background-color:#fff ; color:#222;
+        }
+        #ftr{background-color:black}
+        #ull {display:block; }
+        .cks{ text-align:center; padding-top:15px; color:white; float:right}
+    </style>
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" id="ftr">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Index/">OTOMASYON</a>
+            </div>
+            <ul class="nav navbar-nav" id="ull">
+                <!--Aşağıdaki gibi a hreflere yön verebiliriz.-->
+                <li><a href="/Kategori/Index/">Kategori</a></li>
+                <li><a href="/Alan/Index/">Alan</a></li>
+                <li><a href="/Urun/Index/">Ürünler</a></li>
+                <li><a href="/Musteri/Index/">Müşteriler</a></li>
+                <li><a href="/Satis/Index/">Satışlar</a></li>
+                <li><a href="/Urun/KritikStok/">Kritik Stok</a></li>
+                @*<li><a id="cks" href="/Account/Logout/">ÇIKIŞ YAP</a></li>*@
+            </ul>
+            <ul class="cks">
+                <li><a style="color:white; font:bolder; font-size:17px;" href="/Account/Logout/">ÇIKIŞ YAP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <label class="mode-control" style="float:right">
+        <input id="mode-btn" type="checkbox" />
+        <span>Koyu Mod</span>
+        <span>Açık Mod</span>
+    </label>
+
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <div style="bottom:0;position: fixed; width:100%; background-color:black">
+        @*<hr style="width:100%;" />*@
+        <footer>
+            <p style="text-align:center; color:white"> © Tüm hakkı saklıdır.</p>
+            <P style="text-align:center; color:white">Bu site <strong>Anıl Orhan</strong> tarafından yapılmıştır. </P>
+        </footer>
+    </div>
+
+    @*<footer>
+        <div class="alt">
+            <br /> <br />
+            <p style="text-align:center; color:white"> © Tüm hakkı saklıdır.</p>
+            <P style="text-align:center; color:white">Bu site <strong>Anıl Orhan</strong> tarafından yapılmıştır. </P>
+        </div>
+    </footer>*@
+
+
+    <script>
+
+
+        document.getElementById('mode-btn').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('mode', document.body.classList);
+        });
+        if (localStorage.getItem('mode') != '') {
+            document.body.classList.add(localStorage.getItem('mode'));
+            document.getElementById('mode-btn').checked = true;
+        }
+    </script>
+
+</body>
+</html>
+
